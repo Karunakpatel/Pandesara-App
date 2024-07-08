@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <strong>{{ member_record.id_no }} {{ member_record.name }} </strong>
+    </div>
+    <div class="card-body">
+      
+    <p class="card-text">
+        <strong>Parivar No.:</strong>{{ member_record.parivar_no }}<br/>
+        <strong>Yuvasangh Family Id :</strong>{{ member_record.family_id }}<br/>
+        <strong>Name :</strong>{{ member_record.name }}<br/>
+        <strong>Gender :</strong>{{ member_record.gender}}<br/>
+        <strong>Date of Birth :</strong>{{ member_record.dob }}<br/>
+        <strong>Age :</strong>{{ member_record.age }}<br/>
+        <strong>Firm :</strong>{{ member_record.firm }}<br/>
+        <strong>Sabhasad No. :</strong>{{ member_record.sabhasad_no }}<br/>
+        <strong>Reciept No.:</strong>{{ member_record.reciept_no }}<br/>
+        <strong>Reciept Date :</strong>{{ member_record.reciept_date }}<br/>
+        <strong>Blood Group :</strong>{{ member_record.blood_group }}<br/>
+        <strong>Contact no. :</strong>{{ member_record.contact_no}}<br/>
+        <strong>Education :</strong>{{ member_record.education }}<br/>
+        <strong>Designation :</strong>{{ member_record.designation }}<br/>
+        <strong>Address :</strong>{{ member_record.address }}<br/>
+        <strong>Kutch Watan :</strong>{{ member_record.kutch_watan }}<br/>
+        <strong>Fees :</strong>{{ member_record.fees }}<br/>
+        <strong>Modified at :</strong>{{ member_record.created_at }}<br/>
+    </p>
+    </div>
+</div>
+<br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+<a href="{% url 'update_record' member_record.id_no %}" class="btn btn-info">Update</a>
+<a href="{% url 'delete_record' member_record.id_no %}" class="btn btn-danger">Delete</a>
+
+{% endblock %}

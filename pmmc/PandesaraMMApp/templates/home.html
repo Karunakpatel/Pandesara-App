@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3> પાંડેસરા મિત્ર મંડળ </h3>
+<br>
+
+
+{% if user.is_authenticated %}
+<h5>સભ્યોની યાદી</h5>
+<br><br>
+
+<table class="table table-hover table-striped table-bordered" >
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Id No</th>
+        <th scope="col">Pandesara Parivar No.</th>
+        <th scope="col">Yuvasangh Family Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Age</th>
+        <th scope="col">Firm</th>
+        <th scope="col">Sabhasad no.</th>
+        <th scope="col">Reciept no.</th>
+        <th scope="col">Reciept Date</th>
+        <th scope="col">Blood Group</th>
+        <th scope="col">Contact no</th>
+        <th scope="col">Education</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Address</th>
+        <th scope="col">Kutch Watan</th>
+        <th scope="col">Fees</th>
+        <th scope="col">Modified Date</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+      {% if records %}
+          {% for record in records %}
+          <tr>
+            <td>
+              <a href="record/{{ record.id_no }}">
+                  {{record.id_no}}
+              </a>
+                </td>
+                <td>{{ record.parivar_no }}</td>
+                <td>{{ record.family_id }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.gender}}</td>
+                <td>{{ record.dob }}</td>
+                <td>{{ record.age }}</td>
+                <td>{{ record.firm }}</td>
+                <td>{{ record.sabhasad_no }}</td>
+                <td>{{ record.reciept_no }}</td>
+                <td>{{ record.reciept_date }}</td>
+                <td>{{ record.blood_group }}</td>
+                <td>{{ record.contact_no}}</td>
+                <td>{{ record.education }}</td>
+                <th>{{ record.designation }}</td>
+                <td>{{ record.address }}</td>
+                <td>{{ record.kutch_watan }}</td>
+                <td>{{ record.fees }}</td>
+                <td>{{ record.created_at }}</td>
+          </tr>
+  
+  
+          {% endfor %}
+      </table>    
+      {% endif %}
+
+{% else %}
+
+<div class="col-md-6 offset-md-3">
+<h2>Login </h2>
+<br/>
+
+
+<form method="POST" action="{% url 'home' %}">
+ {% csrf_token %} 
+ 
+    <div class="mb-3">
+      <input type="text" class="form-control" name="username" placeholder="Username" required>
+      
+    </div>
+    <br/>
+    <div class="mb-3">
+      <input type="password" class="form-control" name="password" placeholder="password" required>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-secondary">Login</button>
+  
+
+</form>
+</div>
+{% endif %}
+{% endblock %}

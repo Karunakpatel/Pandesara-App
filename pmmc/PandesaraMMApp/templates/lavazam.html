@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h5>Members Eligible for lavazam</h5>
+<h5><a href="{% url 'lavazam_outstanding' %}">Members Outstanding for lavazam</a></h5>
+{% if user.is_authenticated %}
+
+<br><br>
+
+<table class="table table-hover table-striped table-bordered" >
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Id No</th>
+          <th scope="col">Pandesara Parivar No.</th>
+          <th scope="col">Yuvasangh Family Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Date of Birth</th>
+          <th scope="col">Age</th>
+          <th scope="col">Firm</th>
+          <th scope="col">Sabhasad no.</th>
+          <th scope="col">Reciept no.</th>
+          <th scope="col">Reciept Date</th>
+          <th scope="col">Blood Group</th>
+          <th scope="col">Contact no</th>
+          <th scope="col">Education</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Address</th>
+          <th scope="col">Kutch Watan<th>
+          <th scope="col">Fees</th>
+          <th scope="col">Modified Date</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+      {% if records %}
+          {% for record in records %}
+            
+            <tr>
+              {% if record.age >= 18 and record.gender == 'Male' and record.age <= 45 %}
+              <td><a href="/update_record/{{ record.id_no }}">{{record.id_no}}</a></td>
+              <td>{{ record.parivar_no }}</td>
+              <td>{{ record.family_id }}</td>
+              <td>{{ record.name }}</td>
+              <td>{{ record.gender}}</td>
+              <td>{{ record.dob }}</td>
+              <td>{{ record.age }}</td>
+              <td>{{ record.firm }}</td>
+              <td>{{ record.sabhasad_no }}</td>
+              <td>{{ record.reciept_no }}</td>
+              <td>{{ record.reciept_date }}</td>
+              <td>{{ record.blood_group }}</td>
+              <td>{{ record.contact_no}}</td>
+              <td>{{ record.education }}</td>
+              <th>{{ record.designation }}</td>
+              <td>{{ record.address }}</td>
+              <td>{{ record.fees }}</td>
+              <td>{{ record.created_at }}</td>
+              <td>{{ record.kutch_watan }}</td>
+              {% endif %}
+            </tr>
+            
+  
+          {% endfor %}
+      </table>    
+      {% endif %}
+
+{% endif %}
+{% endblock %}
